@@ -5,8 +5,8 @@ const order = {
   giftcardBalance: 79.82
 };
 
-// Refactor the code below: 
-// To avoid 2 common mistakes: Nesting & Forgeting to return properly
+// To avoid 2 common mistakes: Nesting & Forgeting to return properly.
+// Refactor the Nested code below to chaining (Promise composition): 
 
 /* 
 
@@ -22,4 +22,16 @@ checkInventory(order)
     });
 
     */
+   
+// Code refactord to chaining (a.k.a Promise composition)
 
+checkInventory(order)
+.then((resolvedValueArray) => {
+  return processPayment(resolvedValueArray);
+})
+.then((resolvedValueArray) => {
+  return shipOrder(resolvedValueArray);
+})
+.then((successMessage) => {
+  console.log(successMessage);
+});
